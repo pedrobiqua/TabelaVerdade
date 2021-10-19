@@ -1,6 +1,3 @@
-import java.util.Scanner;
-
-
 public class TabelaVerdade {
     //char printBit(boolean p): Imprime V ou F, de acordo com os valor booleano de entrada
     public char printBit(boolean p){
@@ -76,8 +73,8 @@ public class TabelaVerdade {
             else if (formulaCorreta.charAt(2) == '~')
                 resp = formulaCorreta.charAt(1) == '^' ? (p && !q) : (p || !q);
         }else if (formulaCorreta.length() ==5){
-            // to do...
-            }
+            resp = formulaCorreta.charAt(3) == '^'? (!p && !q): (!p|| !q);
+        }
         System.out.print("| " + printBit(p) + " | " + printBit(q));
         System.out.println(" | " + printBit(resp));
         }
@@ -131,7 +128,7 @@ public class TabelaVerdade {
 
     //void boolean achaFormulaCom1Variavel(String formula): confere se fórmula com
     //1 variável está CORRETA; se sim, imprime tabela verdade.
-    private boolean achaFormulaCom1Variavel(String formula){
+    public boolean achaFormulaCom1Variavel(String formula){
         if((formula.charAt(0) == '~' && formula.charAt(1) == 'p')||         //fórmula = ~p
         (formula.charAt(0) == 'p' && formula.length() ==1 )){               //fórmula = p
             tabelaUmLiteral(formula);
@@ -143,7 +140,7 @@ public class TabelaVerdade {
 
     //void boolean achaFormulaCom2Variaveis(String formula): confere se fórmula com
     //2 variáveis está CORRETA; se sim, imprime tabela verdade
-    private boolean achaFormulaCom2Variaveis(String formula) {
+    public boolean achaFormulaCom2Variaveis(String formula) {
         boolean formOk;
         if ((formula.length() == 3) && // 3 caracteres
                 (formula.charAt(0) == 'p') &&
@@ -158,64 +155,34 @@ public class TabelaVerdade {
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == 'q')) {
             if ((formula.charAt(2) == '^') ||       //fórmula = p^~q
-               (formula.charAt(2) == 'v'))     //fórmula = pv~q
+               (formula.charAt(2) == 'v')){
                 formOk = true;
-            else
+               }else{
                 formOk = false;
-        }else if (formula.length() == 5){   //5 caracteres
-            //TO DO: testar se a fórmula está CORRETA... //Fórmula ~p^~q
+            }
+        }else if ((formula.length() == 5) && (formula.charAt(0) == '~') && (formula.charAt(1) == 'p') && (formula.charAt(3) == '~') && (formula.charAt(4) == 'q') ){   //5 caracteres //Fórmula ~p^~q
+            if ((formula.charAt(2) == '^') || (formula.charAt(2) == 'v')) {
+                formOk = true;
+            }else{
+                formOk = false;
+            }
+        }else if(true){ // Gambiarra nada a ver, depois tirar :)
             formOk = false;
-        }else
-            //TO DO: testar se a formula está CORRETA... ///Fórmula ~pv~q
-            formOk = false;
-        tabelaDoisLiterais(formula);
+        }
+
+        if (formOk) {
+            tabelaDoisLiterais(formula);
+        }
         return formOk;
     }
 
 
     //void boolean achaFormulaCom3Variaveis (String formula): confere se fórmula com
     //3 variaveis está CORRETA, se sim, imprime tabela verdade
-    private boolean achaFormulaCom3Variaveis(String formula){
-        char [] oper = new char[5];         //mantém as operações da fórmula
+    public boolean achaFormulaCom3Variaveis(String formula){
+        //char [] oper = new char[5];         //mantém as operações da fórmula
         //TO DO ...
         return false;
     }
 
-    //Método principal
-    public static void main(String[] args){
-        Scanner leitor = new Scanner(System.in);
-        String formula;
-        boolean tabOk= false;
-
-        TabelaVerdade tb = new TabelaVerdade();
-
-        System.out.print("Entre com a Fórmula: ");
-        formula = leitor.nextLine();
-        formula = formula.toLowerCase();
-
-        switch (formula.length()){
-        case 1:
-        case 2:
-            tabOk = tb.achaFormulaCom1Variavel(formula);
-            break;
-        case 3:
-        case 4:
-            tabOk = tb.achaFormulaCom2Variaveis(formula);
-            break;
-        case 5:
-            if (formula.charAt(0)!= '~')
-                tabOk = tb.achaFormulaCom2Variaveis(formula);
-            else
-                tabOk = tb.achaFormulaCom3Variaveis(formula);
-        // TO DO ...
-        //case 6:
-        //case 7:
-        //case 8:
-        default:
-            tabOk = false;
-        }
-        if (!tabOk)
-            System.out.println("Tabela não econtrada, pois a fórmula está incorreta!");
-        leitor.close();
-    }
 }
