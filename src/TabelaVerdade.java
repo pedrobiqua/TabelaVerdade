@@ -86,11 +86,11 @@ public class TabelaVerdade {
 
     public void tabelaTresLiterais (String formulaCorreta){
         int i;
-        boolean p, q, r, resp;
-
-        System.out.println("+---+---+---+");
+        boolean p, q, r, resp = true;
+        System.out.println("+---+---+---+----+---+---+");
         System.out.print  ("| p | q | r |" + formulaCorreta);
-        System.out.println("+---+---+---+");
+        System.out.println();
+        System.out.println("+---+---+---+----+---+---+");
 
         for (i = 7; i >= 0; i--){
             switch (i){
@@ -118,19 +118,71 @@ public class TabelaVerdade {
             default:
                   p = false; q = false; r = false;
             }
-            //TO DO
             if (formulaCorreta.length() == 5) {
-                resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == '^') ? (p && q && r) : (p || q || r);
-            }else if (formulaCorreta.length() == 6) {
-                if (formulaCorreta.charAt(0) == '~') {
-                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (!p && q && r) : (!p || q || r);
-                }else if(formulaCorreta.charAt(2) == '~'){
-                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && !q && r) : (p || !q || r);
-                }else if(formulaCorreta.charAt(4) == '~'){
-                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && q && !r) : (p || q || !r);
+                if (formulaCorreta.charAt(1) == formulaCorreta.charAt(3)) {
+                    resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == '^') ? (p && q && r) : (p || q || r);
+                }else if (formulaCorreta.charAt(1) != formulaCorreta.charAt(3)) {
+                    resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == 'v') ? (p && q || r) : (p || q && r);
                 }
-            }else if(formulaCorreta.length() == 7){
                 
+            }else if (formulaCorreta.length() == 6) {
+                if (formulaCorreta.charAt(2) == formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(0) == '~') {
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (!p && q && r) : (!p || q || r);
+                    }
+                }else if (formulaCorreta.charAt(2) != formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(0) == '~') {
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == 'v') ? (!p && q || r) : (!p || q && r);
+                    }
+                }else if(formulaCorreta.charAt(1) == formulaCorreta.charAt(4)){
+                    if(formulaCorreta.charAt(2) == '~'){
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && !q && r) : (p || !q || r);
+                    }
+                }else if(formulaCorreta.charAt(1) != formulaCorreta.charAt(4)){
+                    if(formulaCorreta.charAt(2) == '~'){
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == 'v') ? (p && !q || r) : (p || !q && r);
+                    }
+                }else if(formulaCorreta.charAt(1) == formulaCorreta.charAt(3)){
+                    if(formulaCorreta.charAt(4) == '~'){
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && q && !r) : (p || q || !r);
+                    }
+                }else if(formulaCorreta.charAt(1) != formulaCorreta.charAt(3)){
+                    if(formulaCorreta.charAt(4) == '~'){
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == 'v') ? (p && q || !r) : (p || q && !r);
+                    }
+                }
+
+            }else if(formulaCorreta.length() == 7){
+                //formula ¬p v ¬q v r
+                if (formulaCorreta.charAt(2) == formulaCorreta.charAt(5)){
+                    if(formulaCorreta.charAt(0) == '~' && formulaCorreta.charAt(3) == '~'){
+                        resp = (formulaCorreta.charAt(2)=='^' && formulaCorreta.charAt(5) == '^') ? (!p && !q && r) : (!p || !q || r);
+                    }
+                }else if(formulaCorreta.charAt(2) != formulaCorreta.charAt(5)){
+                    if(formulaCorreta.charAt(0) == '~' && formulaCorreta.charAt(3) == '~'){
+                        resp = (formulaCorreta.charAt(2)=='^' && formulaCorreta.charAt(5) == 'v') ? (!p && !q || r) : (!p || !q && r);
+                    }
+                }
+                //formula ¬p v q v ¬r
+                if (formulaCorreta.charAt(2) == formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(0) =='~' && formulaCorreta.charAt(5) == '~') {
+                        resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (!p && q && !r) : (!p || q || !r); 
+                    }
+                }else if (formulaCorreta.charAt(2) != formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(0) == '~' && formulaCorreta.charAt(5) == '~') {
+                        resp = (formulaCorreta.charAt(2) =='^' && formulaCorreta.charAt(4) == 'v') ? (!p && q || !r) : (!p && q || !r);
+                    }
+                }
+                //formula p v ¬q v ¬r
+                if (formulaCorreta.charAt(1) == formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(2) == '~' && formulaCorreta.charAt(5) == '~') {
+                        resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(4) == '^') ? (p && !q && !r) : (p || !q || !r);
+                    }
+                }else if (formulaCorreta.charAt(1) != formulaCorreta.charAt(4)) {
+                    if (formulaCorreta.charAt(2) == '~' && formulaCorreta.charAt(5) == '~') {
+                        resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(4) == 'v') ? (p && !q || !r) : (p || !q && !r);
+                    }
+                }
             }else if(formulaCorreta.length() == 8){
                 if (formulaCorreta.charAt(2) == formulaCorreta.charAt(5)) {
                     resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(5) == '^') ? (!p && !q && !r) : (!p || !q || !r);
@@ -138,12 +190,10 @@ public class TabelaVerdade {
                     resp = (formulaCorreta.charAt(2) == 'v' && formulaCorreta.charAt(5) == '^') ? (!p || !q && !r) : (!p && !q || !r);
                 }
             }
-
-            resp = true;
             System.out.print("| " + printBit(p) + " | " + printBit(q) + " | " + printBit(r));
-            System.out.println(" | " + printBit(resp));
+            System.out.println(" | " + printBit(resp) + "  |");
         }
-        System.out.println("+---+---+---+");
+        System.out.println("+---+---+---+----+---+---+");
     }
 
     //void boolean achaFormulaCom1Variavel(String formula): confere se fórmula com
@@ -201,8 +251,8 @@ public class TabelaVerdade {
     //3 variaveis está CORRETA, se sim, imprime tabela verdade
     public boolean achaFormulaCom3Variaveis(String formula){
         //char [] oper = new char[5];         //mantém as operações da fórmula
-        //TO DO ...
-        return false;
+        tabelaTresLiterais(formula);
+        return true;
     }
 
 }
