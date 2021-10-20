@@ -119,6 +119,26 @@ public class TabelaVerdade {
                   p = false; q = false; r = false;
             }
             //TO DO
+            if (formulaCorreta.length() == 5) {
+                resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == '^') ? (p && q && r) : (p || q || r);
+            }else if (formulaCorreta.length() == 6) {
+                if (formulaCorreta.charAt(0) == '~') {
+                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (!p && q && r) : (!p || q || r);
+                }else if(formulaCorreta.charAt(2) == '~'){
+                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && !q && r) : (p || !q || r);
+                }else if(formulaCorreta.charAt(4) == '~'){
+                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == '^') ? (p && q && !r) : (p || q || !r);
+                }
+            }else if(formulaCorreta.length() == 7){
+                
+            }else if(formulaCorreta.length() == 8){
+                if (formulaCorreta.charAt(2) == formulaCorreta.charAt(5)) {
+                    resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(5) == '^') ? (!p && !q && !r) : (!p || !q || !r);
+                }else if (formulaCorreta.charAt(2) != formulaCorreta.charAt(5)) {
+                    resp = (formulaCorreta.charAt(2) == 'v' && formulaCorreta.charAt(5) == '^') ? (!p || !q && !r) : (!p && !q || !r);
+                }
+            }
+
             resp = true;
             System.out.print("| " + printBit(p) + " | " + printBit(q) + " | " + printBit(r));
             System.out.println(" | " + printBit(resp));
