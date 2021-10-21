@@ -281,7 +281,7 @@ public class TabelaVerdade {
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == 'q') &&
                 (formula.charAt(5) == 'r')) {
-            if ((formula.charAt(2) == '^') ||
+            if ((formula.charAt(2) == '^') ||           // ~pvqvr
                 (formula.charAt(2) == 'v'))
                 formOk = true;
             else
@@ -321,7 +321,70 @@ public class TabelaVerdade {
             return true;
         }
 
+        if ((formula.length() == 7) && // 7 caracteres
+                (formula.charAt(0) == '~') &&
+                (formula.charAt(1) == 'p') &&
+                (formula.charAt(3) == '~') &&
+                (formula.charAt(4) == 'q') &&
+                (formula.charAt(6) == 'r')) {
+            if ((formula.charAt(2) == '^') ||           // ~pv~qvr
+                    (formula.charAt(2) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
 
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+        if ((formula.length() == 7) && // 7 caracteres
+                (formula.charAt(0) == '~') &&
+                (formula.charAt(1) == 'p') &&
+                (formula.charAt(3) == 'q') &&
+                (formula.charAt(5) == '~') &&
+                (formula.charAt(6) == 'r')) {
+            if ((formula.charAt(2) == '^') ||           // ~pvqv~r
+                    (formula.charAt(2) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+        if ((formula.length() == 7) && // 7 caracteres
+                (formula.charAt(0) == 'p') &&
+                (formula.charAt(2) == '~') &&
+                (formula.charAt(3) == 'q') &&
+                (formula.charAt(5) == '~') &&
+                (formula.charAt(6) == 'r')) {
+            if ((formula.charAt(1) == '^') ||           // pv~qv~r
+                    (formula.charAt(1) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+        if ((formula.length() == 8) && // 7 caracteres
+                (formula.charAt(0) == '~') &&
+                (formula.charAt(1) == 'p') &&
+                (formula.charAt(3) == '~') &&
+                (formula.charAt(4) == 'q') &&
+                (formula.charAt(6) == '~') &&
+                (formula.charAt(7) == 'r')) {
+            if ((formula.charAt(2) == '^') ||           // ~pv~qv~r
+                    (formula.charAt(2) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
 
         else if(true){
             formOk = false;
