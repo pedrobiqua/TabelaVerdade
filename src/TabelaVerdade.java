@@ -251,8 +251,32 @@ public class TabelaVerdade {
     //3 variaveis está CORRETA, se sim, imprime tabela verdade
     public boolean achaFormulaCom3Variaveis(String formula){
         //char [] oper = new char[5];         //mantém as operações da fórmula
-        tabelaTresLiterais(formula);
-        return true;
+        boolean formOk;
+        if ((formula.length() == 5) && // 5 caracteres
+                (formula.charAt(0) == 'p') &&
+                (formula.charAt(2) == 'q') &&
+                (formula.charAt(4) == 'r')) {
+            if ((formula.charAt(1) == '^') ||
+               (formula.charAt(1) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+
+
+
+
+        else if(true){
+            formOk = false;
+        }
+        if (formOk){
+            tabelaTresLiterais(formula);
+        }
+        return formOk;
     }
 
 }
