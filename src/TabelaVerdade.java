@@ -224,12 +224,22 @@ public class TabelaVerdade {
                 (formula.charAt(0) == '~') &&
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == 'q')) {
-            if ((formula.charAt(2) == '^') ||       //fórmula = p^~q
+            if ((formula.charAt(2) == '^') ||       //fórmula = ~p^q
                (formula.charAt(2) == 'v')){
                 formOk = true;
-               }else{
+               } else{
                 formOk = false;
             }
+        } else if ((formula.length() == 4) &&       //4caracteres
+                (formula.charAt(0) == 'p') &&
+                (formula.charAt(2) == '~') &&
+                (formula.charAt(3) == 'q')) {
+            if ((formula.charAt(1) == '^') ||       //fórmula = p^~q
+                    (formula.charAt(1) == 'v'))     //fórmula = pv~q
+                formOk = true;
+            else
+                formOk = false;
+
         }else if ((formula.length() == 5) && (formula.charAt(0) == '~') && (formula.charAt(1) == 'p') && (formula.charAt(3) == '~') && (formula.charAt(4) == 'q') ){   //5 caracteres //Fórmula ~p^~q
             if ((formula.charAt(2) == '^') || (formula.charAt(2) == 'v')) {
                 formOk = true;

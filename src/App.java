@@ -28,10 +28,15 @@ public class App {
                 tabOk = tb.achaFormulaCom3Variaveis(formula);
             }
             break;
-        // TO DO ...
-        //case 6:
-        //case 7:
-        //case 8:
+        case 6:
+            tabOk = tb.achaFormulaCom3Variaveis(formula);
+            break;
+        case 7:
+            tabOk = tb.achaFormulaCom3Variaveis(formula);
+            break;
+        case 8:
+            tabOk = tb.achaFormulaCom3Variaveis(formula);
+            break;
         default:
             tabOk = false;
         }
