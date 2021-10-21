@@ -276,7 +276,50 @@ public class TabelaVerdade {
             return true;
         }
 
+        if ((formula.length() == 6) && // 6 caracteres
+                (formula.charAt(0) == '~') &&
+                (formula.charAt(1) == 'p') &&
+                (formula.charAt(3) == 'q') &&
+                (formula.charAt(5) == 'r')) {
+            if ((formula.charAt(2) == '^') ||
+                (formula.charAt(2) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
 
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+        if ((formula.length() == 6) && // 6 caracteres
+                (formula.charAt(0) == 'p') &&
+                (formula.charAt(2) == '~') &&
+                (formula.charAt(3) == 'q') &&
+                (formula.charAt(5) == 'r')) {
+            if ((formula.charAt(4) == '^') ||           // pv~qvr
+                    (formula.charAt(4) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
+
+        if ((formula.length() == 6) && // 6 caracteres
+                (formula.charAt(0) == 'p') &&
+                (formula.charAt(2) == 'q') &&
+                (formula.charAt(4) == '~') &&
+                (formula.charAt(5) == 'r')) {
+            if ((formula.charAt(3) == '^') ||           // pvqv~r
+                    (formula.charAt(3) == 'v'))
+                formOk = true;
+            else
+                formOk = false;
+
+            tabelaTresLiterais(formula);
+            return true;
+        }
 
 
 
