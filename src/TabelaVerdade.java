@@ -32,7 +32,7 @@ public class TabelaVerdade {
         default:
             p = false;  //Binario = 0
         }
-        // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
+        // condicional ternário: x = (expresão booleana) ? código para Verdade: código para Falso;
         resp = (formulaCorreta.charAt(0)=='~')? !p : p;
         System.out.print ("| " + printBit(p) + " |  ");
         System.out.println(printBit(resp));
@@ -65,6 +65,7 @@ public class TabelaVerdade {
            default:
                p = false; q = false;    //Binario = 00
            }
+           // condicional ternário: x = (expresão booleana) ? código para Verdade: código para Falso;
         if (formulaCorreta.length() == 3)
             resp = formulaCorreta.charAt(1) == '^'? p && q: p || q;
         else if (formulaCorreta.length() == 4) {
@@ -117,13 +118,14 @@ public class TabelaVerdade {
             default:
                   p = false; q = false; r = false;  //Binario = 000
             }
+            // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
             if (formulaCorreta.length() == 5) {
                 if (formulaCorreta.charAt(1) == formulaCorreta.charAt(3)) {
                     resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == '^') ? (p && q && r) : (p || q || r);
                 }else if (formulaCorreta.charAt(1) != formulaCorreta.charAt(3)) {
                     resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(3) == 'v') ? (p && q || r) : (p || q && r);
                 }
-                
+            // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
             }else if (formulaCorreta.length() == 6) {
                 if (formulaCorreta.charAt(2) == formulaCorreta.charAt(4)) {
                     if (formulaCorreta.charAt(0) == '~') {
@@ -150,7 +152,7 @@ public class TabelaVerdade {
                         resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(4) == 'v') ? (p && q || !r) : (p || q && !r);
                     }
                 }
-
+                // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
             }else if(formulaCorreta.length() == 7){
                 //formula ¬p v ¬q v r
                 if (formulaCorreta.charAt(2) == formulaCorreta.charAt(5)){
@@ -182,6 +184,7 @@ public class TabelaVerdade {
                         resp = (formulaCorreta.charAt(1) == '^' && formulaCorreta.charAt(4) == 'v') ? (p && !q || !r) : (p || !q && !r);
                     }
                 }
+            // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
             }else if(formulaCorreta.length() == 8){
                 if (formulaCorreta.charAt(2) == formulaCorreta.charAt(5)) {
                     resp = (formulaCorreta.charAt(2) == '^' && formulaCorreta.charAt(5) == '^') ? (!p && !q && !r) : (!p || !q || !r);
