@@ -66,16 +66,18 @@ public class TabelaVerdade {
                p = false; q = false;    //Binario = 00
            }
            // condicional ternário: x = (expresão booleana) ? código para Verdade: código para Falso;
+        // Fórmula com 3 caracteres   
         if (formulaCorreta.length() == 3)
             resp = formulaCorreta.charAt(1) == '^'? p && q: p || q;
+        // Fórmula com 4 caracteres
         else if (formulaCorreta.length() == 4) {
             if (formulaCorreta.charAt(0) == '~')
                 resp = formulaCorreta.charAt(2) == '^' ? (!p && q) : (!p || q);
             else if (formulaCorreta.charAt(2) == '~')
                 resp = formulaCorreta.charAt(1) == '^' ? (p && !q) : (p || !q);
-        }else if (formulaCorreta.length() ==5){
+        }else if (formulaCorreta.length() ==5){ // Fórmula com 5 caracteres
             resp = formulaCorreta.charAt(3) == '^'? (!p && !q): (!p|| !q);
-        }
+        }// Construindo tabela.
         System.out.print("| " + printBit(p) + " | " + printBit(q));
         System.out.println(" | " + printBit(resp));
         }
