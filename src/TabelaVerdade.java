@@ -211,7 +211,7 @@ public class TabelaVerdade {
     //void boolean achaFormulaCom2Variaveis(String formula): confere se fórmula com
     //2 variáveis está CORRETA; se sim, imprime tabela verdade
     public boolean achaFormulaCom2Variaveis(String formula) {
-        boolean formOk;
+        boolean formOk = false;
         if ((formula.length() == 3) && // 3 caracteres
                 (formula.charAt(0) == 'p') &&
                 (formula.charAt(2) == 'q')) {
@@ -246,8 +246,6 @@ public class TabelaVerdade {
             }else{
                 formOk = false;
             }
-        }else if(true){ // Gambiarra nada a ver, depois tirar :)
-            formOk = false;
         }
 
         if (formOk) {
@@ -261,7 +259,7 @@ public class TabelaVerdade {
     //3 variaveis está CORRETA, se sim, imprime tabela verdade
     public boolean achaFormulaCom3Variaveis(String formula){
         //char [] oper = new char[5];         //mantém as operações da fórmula
-        boolean formOk;
+        boolean formOk = false;
         if ((formula.length() == 5) && // 5 caracteres
                 (formula.charAt(0) == 'p') &&
                 (formula.charAt(2) == 'q') &&
@@ -384,10 +382,6 @@ public class TabelaVerdade {
 
             tabelaTresLiterais(formula);
             return true;
-        }
-
-        else if(true){
-            formOk = false;
         }
         if (formOk){
             tabelaTresLiterais(formula);
