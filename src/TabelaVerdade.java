@@ -83,7 +83,6 @@ public class TabelaVerdade {
 
     //void tabelaDoisLiterais(String formulaCorreta): Imprime tabela verdade
     //de uma fórmula CORRETA com 3 Literais/Variáveis.
-
     public void tabelaTresLiterais (String formulaCorreta){
         int i;
         boolean p, q, r, resp = true;
@@ -225,7 +224,7 @@ public class TabelaVerdade {
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == 'q')) {
             if ((formula.charAt(2) == '^') ||       //fórmula = ~p^q
-               (formula.charAt(2) == 'v')){
+               (formula.charAt(2) == 'v')){         //fórmula = ~pvq
                 formOk = true;
                } else{
                 formOk = false;
@@ -240,7 +239,7 @@ public class TabelaVerdade {
             else
                 formOk = false;
 
-        }else if ((formula.length() == 5) && (formula.charAt(0) == '~') && (formula.charAt(1) == 'p') && (formula.charAt(3) == '~') && (formula.charAt(4) == 'q') ){   //5 caracteres //Fórmula ~p^~q
+        }else if ((formula.length() == 5) && (formula.charAt(0) == '~') && (formula.charAt(1) == 'p') && (formula.charAt(3) == '~') && (formula.charAt(4) == 'q') ){   //5 caracteres //Fórmula ~p(^v)~q
             if ((formula.charAt(2) == '^') || (formula.charAt(2) == 'v')) {
                 formOk = true;
             }else{
@@ -258,13 +257,12 @@ public class TabelaVerdade {
     //void boolean achaFormulaCom3Variaveis (String formula): confere se fórmula com
     //3 variaveis está CORRETA, se sim, imprime tabela verdade
     public boolean achaFormulaCom3Variaveis(String formula){
-        //char [] oper = new char[5];         //mantém as operações da fórmula
         boolean formOk = false;
         if ((formula.length() == 5) && // 5 caracteres
                 (formula.charAt(0) == 'p') &&
                 (formula.charAt(2) == 'q') &&
                 (formula.charAt(4) == 'r')) {
-            if ((formula.charAt(1) == '^') ||
+            if ((formula.charAt(1) == '^') ||           //p(^v)q(^v)r
                (formula.charAt(1) == 'v'))
                 formOk = true;
             else
@@ -279,7 +277,7 @@ public class TabelaVerdade {
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == 'q') &&
                 (formula.charAt(5) == 'r')) {
-            if ((formula.charAt(2) == '^') ||           // ~pvqvr
+            if ((formula.charAt(2) == '^') ||           // ~p(^v)q(^v)r
                 (formula.charAt(2) == 'v'))
                 formOk = true;
             else
@@ -294,7 +292,7 @@ public class TabelaVerdade {
                 (formula.charAt(2) == '~') &&
                 (formula.charAt(3) == 'q') &&
                 (formula.charAt(5) == 'r')) {
-            if ((formula.charAt(4) == '^') ||           // pv~qvr
+            if ((formula.charAt(4) == '^') ||           // p(^v)~q(^v)r
                     (formula.charAt(4) == 'v'))
                 formOk = true;
             else
@@ -309,7 +307,7 @@ public class TabelaVerdade {
                 (formula.charAt(2) == 'q') &&
                 (formula.charAt(4) == '~') &&
                 (formula.charAt(5) == 'r')) {
-            if ((formula.charAt(3) == '^') ||           // pvqv~r
+            if ((formula.charAt(3) == '^') ||           // p(^v)q(^v)~r
                     (formula.charAt(3) == 'v'))
                 formOk = true;
             else
@@ -325,7 +323,7 @@ public class TabelaVerdade {
                 (formula.charAt(3) == '~') &&
                 (formula.charAt(4) == 'q') &&
                 (formula.charAt(6) == 'r')) {
-            if ((formula.charAt(2) == '^') ||           // ~pv~qvr
+            if ((formula.charAt(2) == '^') ||           // ~p(^v)~q(^v)r
                     (formula.charAt(2) == 'v'))
                 formOk = true;
             else
@@ -341,7 +339,7 @@ public class TabelaVerdade {
                 (formula.charAt(3) == 'q') &&
                 (formula.charAt(5) == '~') &&
                 (formula.charAt(6) == 'r')) {
-            if ((formula.charAt(2) == '^') ||           // ~pvqv~r
+            if ((formula.charAt(2) == '^') ||           // ~p(^v)q(^v)~r
                     (formula.charAt(2) == 'v'))
                 formOk = true;
             else
@@ -357,7 +355,7 @@ public class TabelaVerdade {
                 (formula.charAt(3) == 'q') &&
                 (formula.charAt(5) == '~') &&
                 (formula.charAt(6) == 'r')) {
-            if ((formula.charAt(1) == '^') ||           // pv~qv~r
+            if ((formula.charAt(1) == '^') ||           // p(^v)~q(^v)~r
                     (formula.charAt(1) == 'v'))
                 formOk = true;
             else
@@ -367,14 +365,14 @@ public class TabelaVerdade {
             return true;
         }
 
-        if ((formula.length() == 8) && // 7 caracteres
+        if ((formula.length() == 8) && // 8 caracteres
                 (formula.charAt(0) == '~') &&
                 (formula.charAt(1) == 'p') &&
                 (formula.charAt(3) == '~') &&
                 (formula.charAt(4) == 'q') &&
                 (formula.charAt(6) == '~') &&
                 (formula.charAt(7) == 'r')) {
-            if ((formula.charAt(2) == '^') ||           // ~pv~qv~r
+            if ((formula.charAt(2) == '^') ||           // ~p(^v)~q(^v)~r
                     (formula.charAt(2) == 'v'))
                 formOk = true;
             else
