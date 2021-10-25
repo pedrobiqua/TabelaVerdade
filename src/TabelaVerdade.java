@@ -27,10 +27,10 @@ public class TabelaVerdade {
         for (i = 1; i >= 0; i--){
         switch (i) {
         case 1:
-            p = true;
+            p = true;   //Binario = 1
             break;
         default:
-            p = false;
+            p = false;  //Binario = 0
         }
         // condicional ternário: x = (expresão booleana) ? código paara Verdade: código para Falso;
         resp = (formulaCorreta.charAt(0)=='~')? !p : p;
@@ -54,16 +54,16 @@ public class TabelaVerdade {
         for (i = 3; i >= 0; i--){
            switch (i){
            case 3:
-               p = true; q = true;
+               p = true; q = true;  //Binario = 11
                break;
            case 2:
-               p = true; q = false;
+               p = true; q = false; //Binario = 10
                break;
            case 1:
-               p = false; q = true;
+               p = false; q = true; //Binario = 01
                break;
            default:
-               p = false; q = false;
+               p = false; q = false;    //Binario = 00
            }
         if (formulaCorreta.length() == 3)
             resp = formulaCorreta.charAt(1) == '^'? p && q: p || q;
@@ -94,28 +94,28 @@ public class TabelaVerdade {
         for (i = 7; i >= 0; i--){
             switch (i){
             case 7:
-                p = true; q = true; r = true;
+                p = true; q = true; r = true;   //Binario = 111
                 break;
             case 6:
-                p = true; q = true; r = false;
+                p = true; q = true; r = false;     //Binario = 110
                 break;
             case 5:
-                p = true; q = false; r = true;
+                p = true; q = false; r = true;      //Binario = 101
                 break;
             case 4:
-                 p = true; q = false; r = false;
+                 p = true; q = false; r = false;    //Binario = 100
                  break;
             case 3:
-                 p = false; q = true; r = true;
+                 p = false; q = true; r = true;     //Binario = 011
                  break;
              case 2:
-                  p = false; q = true; r = false;
+                  p = false; q = true; r = false;   //Binario = 010
                   break;
             case 1:
-                  p = false; q = false; r = true;
+                  p = false; q = false; r = true;   //Binario = 001
                   break;
             default:
-                  p = false; q = false; r = false;
+                  p = false; q = false; r = false;  //Binario = 000
             }
             if (formulaCorreta.length() == 5) {
                 if (formulaCorreta.charAt(1) == formulaCorreta.charAt(3)) {
